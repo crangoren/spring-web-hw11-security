@@ -21,7 +21,7 @@ public class DemoController {
     }
 
     @GetMapping("/unsecured")
-    public String usecuredPage() {
+    public String unsecuredPage() {
         return "unsecured";
     }
 
@@ -31,7 +31,6 @@ public class DemoController {
     }
 
     @GetMapping("/admin")
-    // @PreAuthorize("hasRole('ADMIN')")
     public String adminPage() {
         return "admin";
     }
@@ -41,4 +40,10 @@ public class DemoController {
         User user = userService.findByUsername(principal.getName()).orElseThrow(() -> new RuntimeException("Unable to find user by username: " + principal.getName()));
         return "Authenticated user info: " + user.getUsername() + " : " + user.getEmail();
     }
+
+    @GetMapping("/secret")
+    public String secretPage() {
+        return "this is a secret page";
+    }
+
 }
